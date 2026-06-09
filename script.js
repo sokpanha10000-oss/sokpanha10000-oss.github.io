@@ -4,6 +4,7 @@ const snippets = {
     desc: "Library loader",
     code: `local Library = loadstring(game:HttpGet("https://github.com/sokpanha10000-oss/SKUI/releases/latest/download/main.lua"))()`
   },
+
   window: {
     title: "UI / Window",
     desc: "Window setup",
@@ -17,6 +18,7 @@ const snippets = {
     UserInfoSubtitle = "Advanced User",
 })`
   },
+
   minimizer: {
     title: "UI / Minimizer",
     desc: "Minimizer and mobile button",
@@ -29,21 +31,28 @@ local MobileButton = Minimizer:CreateMobileMinimizer({
   BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 })`
   },
-  tab: {
-    title: "UI / Tab",
-    desc: "Tab styles",
+
+  tab1: {
+    title: "UI / Tab style 1",
+    desc: "Tab with table style",
     code: `local Tab = Window:MakeTab({
   Title = "Cool Tab",
   Icon = "Home"
-})
-
-local Tab = Window:MakeTab({ "Cool Tab", "Home" })`
+})`
   },
+
+  tab2: {
+    title: "UI / Tab style 2",
+    desc: "Tab with short style",
+    code: `local Tab = Window:MakeTab({ "Cool Tab", "Home" })`
+  },
+
   section: {
     title: "UI / Section",
     desc: "Section example",
     code: `Tab:AddSection("Section")`
   },
+
   dialog: {
     title: "UI / Dialog",
     desc: "Dialog example",
@@ -63,6 +72,7 @@ local Tab = Window:MakeTab({ "Cool Tab", "Home" })`
   }
 })`
   },
+
   notification: {
     title: "UI / Notification",
     desc: "Notification popup",
@@ -73,6 +83,7 @@ local Tab = Window:MakeTab({ "Cool Tab", "Home" })`
   Duration = 5
 })`
   },
+
   button: {
     title: "Elements / Button",
     desc: "Button element",
@@ -84,18 +95,33 @@ local Tab = Window:MakeTab({ "Cool Tab", "Home" })`
   end
 })`
   },
-  toggle: {
-    title: "Elements / Toggle",
-    desc: "Toggle / checkbox",
+
+  toggle1: {
+    title: "Elements / Toggle style 1",
+    desc: "Toggle with normal style",
     code: `Tab:AddToggle({
   Name = "Toggle",
-  Type = "Toggle", -- or "Checkbox"
+  Type = "Toggle",
   Default = false,
   Callback = function(Value)
     
   end
 })`
   },
+
+  toggle2: {
+    title: "Elements / Toggle style 2",
+    desc: "Toggle with checkbox style",
+    code: `Tab:AddToggle({
+  Name = "Toggle",
+  Type = "Checkbox",
+  Default = false,
+  Callback = function(Value)
+    
+  end
+})`
+  },
+
   slider: {
     title: "Elements / Slider",
     desc: "Slider element",
@@ -110,9 +136,10 @@ local Tab = Window:MakeTab({ "Cool Tab", "Home" })`
   end
 })`
   },
-  dropdown: {
-    title: "Elements / Dropdown",
-    desc: "Dropdown examples",
+
+  dropdown1: {
+    title: "Elements / Dropdown single",
+    desc: "Single select dropdown",
     code: `Tab:AddDropdown({
   Name = "Dropdown",
   Options = {"one", "two", "three", "four", "five"},
@@ -120,9 +147,13 @@ local Tab = Window:MakeTab({ "Cool Tab", "Home" })`
   Callback = function(Value)
     
   end
-})
+})`
+  },
 
-Tab:AddDropdown({
+  dropdown2: {
+    title: "Elements / Dropdown multi",
+    desc: "Multi select dropdown",
+    code: `Tab:AddDropdown({
   Name = "Dropdown",
   MultiSelect = true,
   Options = {"one", "two", "three", "four", "five"},
@@ -132,6 +163,7 @@ Tab:AddDropdown({
   end
 })`
   },
+
   textbox: {
     title: "Elements / Textbox",
     desc: "Textbox element",
@@ -145,11 +177,13 @@ Tab:AddDropdown({
   end
 })`
   },
+
   paragraph: {
     title: "Elements / Paragraph",
     desc: "Paragraph element",
     code: `Tab:AddParagraph("Paragraph", "This is a Paragraph\\nSecond Line")`
   },
+
   discord: {
     title: "Elements / Discord",
     desc: "Discord invite card",
@@ -163,6 +197,7 @@ Tab:AddDropdown({
   Online = 20000,
 })`
   },
+
   uiscale: {
     title: "Elements / UI scale",
     desc: "UI scale example",
@@ -173,6 +208,7 @@ print(("UI Min Scale is: %s and the maximum is: %s"):format(
   Library:GetMaxScale()
 ))`
   },
+
   flags: {
     title: "Elements / Flags",
     desc: "Flag saving example",
@@ -195,8 +231,8 @@ Tab:AddToggle({
 
 const cardsByPage = [
   ["library"],
-  ["window", "minimizer", "tab", "section", "dialog", "notification"],
-  ["button", "toggle", "slider", "dropdown", "textbox", "paragraph", "discord", "uiscale", "flags"]
+  ["window", "minimizer", "tab1", "tab2", "section", "dialog", "notification"],
+  ["button", "toggle1", "toggle2", "slider", "dropdown1", "dropdown2", "textbox", "paragraph", "discord", "uiscale", "flags"]
 ];
 
 const pageInfo = [
@@ -206,11 +242,11 @@ const pageInfo = [
   },
   {
     title: "UI",
-    text: "Window, minimizer, tab, section, dialog, and notification."
+    text: "Window, minimizer, two tab styles, section, dialog, and notification."
   },
   {
     title: "Elements",
-    text: "Buttons, toggles, sliders, dropdowns, textboxes, paragraphs, Discord, UI scale, and flags."
+    text: "Buttons, two toggle styles, sliders, two dropdown styles, textboxes, paragraphs, Discord, UI scale, and flags."
   }
 ];
 
@@ -263,18 +299,22 @@ menuBackdrop.addEventListener("click", () => toggleMenu(false));
 document.querySelectorAll(".menuItem").forEach(btn => {
   btn.addEventListener("click", () => {
     const id = btn.dataset.open;
+
     const pageMap = {
       library: 0,
       window: 1,
       minimizer: 1,
-      tab: 1,
+      tab1: 1,
+      tab2: 1,
       section: 1,
       dialog: 1,
       notification: 1,
       button: 2,
-      toggle: 2,
+      toggle1: 2,
+      toggle2: 2,
       slider: 2,
-      dropdown: 2,
+      dropdown1: 2,
+      dropdown2: 2,
       textbox: 2,
       paragraph: 2,
       discord: 2,
