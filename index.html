@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wand UI Library</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">W</div>
+      <div>
+        <h1>Wand UI Library</h1>
+        <p>GitHub Pages code showcase</p>
+      </div>
+    </div>
+
+    <button id="menuBtn" class="dots">⋯</button>
+  </div>
+
+  <section class="hero">
+    <div class="hero-left">
+      <h2>Description</h2>
+      <p>
+        A GitHub IO website made to display your Wand UI Library code.
+        Use Next / Back, or open the menu and pick a section.
+      </p>
+
+      <div class="controls">
+        <button id="backBtn" class="btn secondary">back</button>
+        <button id="nextBtn" class="btn">Next</button>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <h3 id="pageTitle">Description</h3>
+      <p id="pageText">
+        Welcome page. Use the buttons to browse your library pages.
+      </p>
+    </div>
+  </section>
+
+  <main class="pages">
+    <div class="page active" data-page="0">
+      <h3>Setup</h3>
+      <div class="grid" id="setupGrid"></div>
+    </div>
+
+    <div class="page" data-page="1">
+      <h3>UI</h3>
+      <div class="grid" id="uiGrid"></div>
+    </div>
+
+    <div class="page" data-page="2">
+      <h3>Elements</h3>
+      <div class="grid" id="elementsGrid"></div>
+    </div>
+  </main>
+
+  <div id="menuBackdrop" class="backdrop"></div>
+
+  <aside id="menu" class="menu">
+    <h3>Sections</h3>
+
+    <div class="sectionLabel">Setup</div>
+    <button class="menuItem" data-open="library">library</button>
+
+    <div class="sectionLabel">UI</div>
+    <button class="menuItem" data-open="window">Window</button>
+    <button class="menuItem" data-open="minimizer">Minimizer</button>
+    <button class="menuItem" data-open="tab">Tab</button>
+    <button class="menuItem" data-open="section">Section</button>
+    <button class="menuItem" data-open="dialog">Dialog</button>
+    <button class="menuItem" data-open="notification">Notification</button>
+
+    <div class="sectionLabel">Elements</div>
+    <button class="menuItem" data-open="button">Button</button>
+    <button class="menuItem" data-open="toggle">Toggle</button>
+    <button class="menuItem" data-open="slider">Slider</button>
+    <button class="menuItem" data-open="dropdown">Dropdown</button>
+    <button class="menuItem" data-open="textbox">Textbox</button>
+    <button class="menuItem" data-open="paragraph">Paragraph</button>
+    <button class="menuItem" data-open="discord">Discord</button>
+    <button class="menuItem" data-open="uiscale">UI scale</button>
+    <button class="menuItem" data-open="flags">Flags</button>
+  </aside>
+
+  <div id="modalBackdrop" class="modalBackdrop">
+    <div class="modal">
+      <div class="modalTop">
+        <h3 id="modalTitle">Code</h3>
+        <button id="closeModal" class="closeBtn">×</button>
+      </div>
+      <div class="modalBody">
+        <div class="codeBox">
+          <div class="codeBar">
+            <span id="modalDesc">Copy code</span>
+            <button id="copyBtn" class="copyBtn">Copy code</button>
+          </div>
+          <pre id="codeText"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Copied</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
