@@ -50,10 +50,7 @@ local MobileButton = Minimizer:CreateMobileMinimizer({
     section: "UI",
     tag: "ui",
     title: "Tab (Simple)",
-    code: `local Tab = Window:MakeTab({
-    "Cool Tab",
-    "Home"
-})`
+    code: `local Tab = Window:MakeTab({ "Cool Tab", "Home" })`
   },
   {
     id: "section",
