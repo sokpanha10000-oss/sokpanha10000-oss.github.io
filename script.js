@@ -1,320 +1,190 @@
-const snippets = [
-  {
-    id: "library",
-    section: "Setup",
-    tag: "setup",
-    title: "Library",
-    code: `local Library = loadstring(game:HttpGet("https://github.com/sokpanha10000-oss/SKUI/releases/latest/download/main.lua"))()`
-  },
-  {
-    id: "window",
-    section: "UI",
-    tag: "ui",
-    title: "Window",
-    code: `local Window = Library:MakeWindow({
-    Name = "Nice Hub : Cool Game",
-    Author = "dev by real_redz",
-    ScriptFolder = "redz-library-V5-remake-mod",
-    SearchBar = true,
-    UserInfoTop = true,
-    UserInfoTitle = game:GetService("Players").LocalPlayer.DisplayName,
-    UserInfoSubtitle = "Advanced User",
-})`
-  },
-  {
-    id: "minimizer",
-    section: "UI",
-    tag: "ui",
-    title: "Minimizer",
-    code: `local Minimizer = Window:NewMinimizer({
-    KeyCode = Enum.KeyCode.LeftControl
-})
-
-local MobileButton = Minimizer:CreateMobileMinimizer({
-    Image = "rbxassetid://0",
-    BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-})`
-  },
-  {
-    id: "tab-title-icon",
-    section: "UI",
-    tag: "ui",
-    title: "Tab (Title + Icon)",
-    code: `local Tab = Window:MakeTab({
-    Title = "Cool Tab",
-    Icon = "Home"
-})`
-  },
-  {
-    id: "tab-simple",
-    section: "UI",
-    tag: "ui",
-    title: "Tab (Simple)",
-    code: `local Tab = Window:MakeTab({ "Cool Tab", "Home" })`
-  },
-  {
-    id: "section",
-    section: "UI",
-    tag: "ui",
-    title: "Section",
-    code: `Tab:AddSection("Section")`
-  },
-  {
-    id: "dialog",
-    section: "UI",
-    tag: "ui",
-    title: "Dialog",
-    code: `Window:Dialog({
-    Title = "Hello!",
-    Content = "do you like Coffee?",
-    Options = {
-        {
-            Name = "No"
-        },
-        {
-            Name = "Yes!",
-            Callback = function(self)
-                print("Yes, i like Coffee")
-            end
-        }
+// Feature Data Dictionary based on your exact requirements
+const features = [
+    {
+        section: "Setup",
+        items: [
+            {
+                name: "Library",
+                code: `local Library = loadstring(game:HttpGet("https://github.com/sokpanha10000-oss/SKUI/releases/latest/download/main.lua"))()`
+            }
+        ]
+    },
+    {
+        section: "UI",
+        items: [
+            {
+                name: "Window",
+                code: `local Window = Library:MakeWindow({\n    Name = "Nice Hub : Cool Game",\n    Author = "dev by real_redz",\n    ScriptFolder = "redz-library-V5-remake-mod",\n    SearchBar = true,\n    UserInfoTop = true,\n    UserInfoTitle = game:GetService("Players").LocalPlayer.DisplayName,\n    UserInfoSubtitle = "Advanced User",\n})`
+            },
+            {
+                name: "Minimizer",
+                code: `local Minimizer = Window:NewMinimizer({\n    KeyCode = Enum.KeyCode.LeftControl\n})\n\nlocal MobileButton = Minimizer:CreateMobileMinimizer({\n    Image = "rbxassetid://0",\n    BackgroundColor3 = Color3.fromRGB(0, 0, 0)\n})`
+            },
+            {
+                name: "Tab",
+                code: `local Tab = Window:MakeTab({\n    Title = "Cool Tab",\n    Icon = "Home"\n})\n-- OR shorter version\nlocal Tab = Window:MakeTab({ "Cool Tab", "Home" })`
+            },
+            {
+                name: "Section",
+                code: `Tab:AddSection("Section")`
+            },
+            {
+                name: "Dialog",
+                code: `Window:Dialog({\n    Title = "Hello!",\n    Content = "do you like Coffee?",\n    Options = {\n        { Name = "No" },\n        {\n            Name = "Yes!",\n            Callback = function(self)\n                print("Yes, i like Coffee")\n            end\n        }\n    }\n})`
+            },
+            {
+                name: "Notification",
+                code: `Window:Notify({\n    Title = "Notification",\n    Content = "this is a Notification",\n    Image = "rbxassetid://10734953451",\n    Duration = 5\n})`
+            }
+        ]
+    },
+    {
+        section: "Elements",
+        items: [
+            {
+                name: "Button",
+                code: `Tab:AddButton({\n    Name = "My Button",\n    Debounce = 0.5,\n    Callback = function()\n        -- add function logic here\n    end\n})`
+            },
+            {
+                name: "Toggle",
+                code: `Tab:AddToggle({\n    Name = "Toggle",\n    Type = "Toggle", -- or [Checkbox]\n    Default = false,\n    Callback = function(Value)\n        -- logic here\n    end\n})`
+            },
+            {
+                name: "Slider",
+                code: `Tab:AddSlider({\n    Name = "Cool Title",\n    Min = -5,\n    Max = 5,\n    Increment = 0.25,\n    Default = 0,\n    Callback = function(Value)\n        -- logic here\n    end\n})`
+            },
+            {
+                name: "Dropdown",
+                code: `Tab:AddDropdown({\n    Name = "Dropdown",\n    Options = {"one", "two", "three", "four", "five"},\n    Default = "one",\n    Callback = function(Value)\n        -- logic here\n    end\n})\n\n-- Multi Select Variant:\nTab:AddDropdown({\n    Name = "Dropdown",\n    MultiSelect = true,\n    Options = {"one", "two", "three", "four", "five"},\n    Default = {"one", "four"},\n    Callback = function(Value)\n        -- logic here\n    end\n})`
+            },
+            {
+                name: "Textbox",
+                code: `Tab:AddTextBox({\n    Name = "My TextBox",\n    Default = "text",\n    Placeholder = "input text...",\n    ClearOnFocus = true,\n    Callback = function(Value)\n        -- logic here\n    end\n})`
+            },
+            {
+                name: "Paragraph",
+                code: `Tab:AddParagraph("Paragraph", "This is a Paragraph\\nSecond Line")`
+            },
+            {
+                name: "Discord",
+                code: `MainTab:AddDiscordInvite({\n    Title = "redz Hub | Community",\n    Description = "A community for redz Hub Users -- official scripts, updates, and suport in one place.",\n    Banner = "rbxassetid://17382040552", -- You can put an RGB Color: Color3.fromRGB(233, 37, 69)\n    Logo = "rbxassetid://17382040552",\n    Invite = "https://discord.gg/redz-hub",\n    Members = 470000, -- Optional\n    Online = 20000, -- Optional\n})`
+            },
+            {
+                name: "UI scale",
+                code: `Library:SetUIScale(1.0)\n\nprint(\`UI Max Scale is: {Library:GetMinScale()} and the minimum is: {Library:GetMaxScale()}\`)`
+            },
+            {
+                name: "Flags",
+                code: `Tab:AddToggle({ Name = "Cool Toggle", Flag = "toggle_flag" })\n\nlocal ToggleValue = Window:GetFlag("toggle_flag") or false\n\nTab:AddToggle({\n    Name = "Cool Toggle",\n    Default = ToggleValue,\n    Callback = function(Value)\n        Window:SetFlag("toggle_flag", Value)\n    end\n})`
+            }
+        ]
     }
-})`
-  },
-  {
-    id: "notification",
-    section: "UI",
-    tag: "ui",
-    title: "Notification",
-    code: `Window:Notify({
-    Title = "Notification",
-    Content = "this is a Notification",
-    Image = "rbxassetid://10734953451",
-    Duration = 5
-})`
-  },
-  {
-    id: "button",
-    section: "Elements",
-    tag: "elements",
-    title: "Button",
-    code: `Tab:AddButton({
-    Name = "My Button",
-    Debounce = 0.5,
-    Callback = function()
-    end
-})`
-  },
-  {
-    id: "toggle",
-    section: "Elements",
-    tag: "elements",
-    title: "Toggle",
-    code: `Tab:AddToggle({
-    Name = "Toggle",
-    Type = "Toggle",
-    Default = false,
-    Callback = function(Value)
-    end
-})`
-  },
-  {
-    id: "slider",
-    section: "Elements",
-    tag: "elements",
-    title: "Slider",
-    code: `Tab:AddSlider({
-    Name = "Cool Title",
-    Min = -5,
-    Max = 5,
-    Increment = 0.25,
-    Default = 0,
-    Callback = function(Value)
-    end
-})`
-  },
-  {
-    id: "dropdown-single",
-    section: "Elements",
-    tag: "elements",
-    title: "Dropdown",
-    code: `Tab:AddDropdown({
-    Name = "Dropdown",
-    Options = {"one", "two", "three", "four", "five"},
-    Default = "one",
-    Callback = function(Value)
-    end
-})`
-  },
-  {
-    id: "dropdown-multi",
-    section: "Elements",
-    tag: "elements",
-    title: "Dropdown (MultiSelect)",
-    code: `Tab:AddDropdown({
-    Name = "Dropdown",
-    MultiSelect = true,
-    Options = {"one", "two", "three", "four", "five"},
-    Default = {"one", "four"},
-    Callback = function(Value)
-    end
-})`
-  },
-  {
-    id: "textbox",
-    section: "Elements",
-    tag: "elements",
-    title: "Textbox",
-    code: `Tab:AddTextBox({
-    Name = "My TextBox",
-    Default = "text",
-    Placeholder = "input text...",
-    ClearOnFocus = true,
-    Callback = function(Value)
-    end
-})`
-  },
-  {
-    id: "paragraph",
-    section: "Elements",
-    tag: "elements",
-    title: "Paragraph",
-    code: `Tab:AddParagraph("Paragraph", "This is a Paragraph\\nSecond Line")`
-  },
-  {
-    id: "discord",
-    section: "Elements",
-    tag: "elements",
-    title: "Discord UI",
-    code: `MainTab:AddDiscordInvite({
-    Title = "redz Hub | Community",
-    Description = "A community for redz Hub Users -- official scripts, updates, and suport in one place.",
-    Banner = "rbxassetid://17382040552",
-    Logo = "rbxassetid://17382040552",
-    Invite = "https://discord.gg/redz-hub",
-    Members = 470000,
-    Online = 20000
-})`
-  },
-  {
-    id: "scale",
-    section: "Elements",
-    tag: "elements",
-    title: "UI Scale",
-    code: `Library:SetUIScale(1.0)
-
-print("UI Max Scale is: ", Library:GetMinScale(), "and the minimum is: ", Library:GetMaxScale())`
-  },
-  {
-    id: "flags",
-    section: "Elements",
-    tag: "elements",
-    title: "Flags",
-    code: `Tab:AddToggle({
-    Name = "Cool Toggle",
-    Flag = "toggle_flag"
-})
-
-local ToggleValue = Window:GetFlag("toggle_flag") or false
-
-Tab:AddToggle({
-    Name = "Cool Toggle",
-    Default = ToggleValue,
-    Callback = function(Value)
-        Window:SetFlag("toggle_flag", Value)
-    end
-})`
-  }
 ];
 
-const setupItems = document.getElementById("setupItems");
-const uiItems = document.getElementById("uiItems");
-const elementsItems = document.getElementById("elementsItems");
-const codeOutput = document.getElementById("codeOutput");
-const activeSectionLabel = document.getElementById("activeSectionLabel");
-const activeSnippetTitle = document.getElementById("activeSnippetTitle");
-const snippetTag = document.getElementById("snippetTag");
-const copyBtn = document.getElementById("copyBtn");
-const overlay = document.getElementById("overlay");
-const sideMenu = document.getElementById("sideMenu");
-const menuBtn = document.getElementById("menuBtn");
-const closeMenuBtn = document.getElementById("closeMenuBtn");
-const backBtn = document.getElementById("backBtn");
-const nextBtn = document.getElementById("nextBtn");
-
-let currentIndex = 0;
-
-function makeSnippetButton(snippet, index) {
-  const btn = document.createElement("button");
-  btn.className = "snippet-btn";
-  btn.type = "button";
-  btn.dataset.index = String(index);
-  btn.textContent = snippet.title;
-  btn.addEventListener("click", () => {
-    setSnippet(index);
-    closeMenu();
-  });
-  return btn;
-}
-
-snippets.forEach((snippet, index) => {
-  const button = makeSnippetButton(snippet, index);
-  if (snippet.section === "Setup") setupItems.appendChild(button);
-  else if (snippet.section === "UI") uiItems.appendChild(button);
-  else elementsItems.appendChild(button);
+// Flatten array for sequential Next/Back navigation
+const flatList = [];
+features.forEach((sec) => {
+    sec.items.forEach((item) => {
+        flatList.push({ sectionName: sec.section, ...item });
+    });
 });
 
-function renderActiveStyles() {
-  document.querySelectorAll(".snippet-btn").forEach((btn) => {
-    btn.classList.toggle("active", Number(btn.dataset.index) === currentIndex);
-  });
+let currentIndex = -1;
+
+// DOM Elements
+const sidebar = document.getElementById('sidebar');
+const menuBtn = document.getElementById('menu-btn');
+const backBtn = document.getElementById('back-btn');
+const nextBtn = document.getElementById('next-btn');
+const menuContent = document.getElementById('menu-content');
+const welcomeMsg = document.getElementById('welcome-msg');
+const codeContainer = document.getElementById('code-container');
+const codeBlock = document.getElementById('code-block');
+const featureTitle = document.getElementById('current-feature-title');
+const copyBtn = document.getElementById('copy-btn');
+
+// 1. Initialize Menu UI
+function renderMenu() {
+    menuContent.innerHTML = '';
+    
+    features.forEach((sec, sIdx) => {
+        const secDiv = document.createElement('div');
+        secDiv.className = 'menu-section';
+        secDiv.innerHTML = `<h3>${sec.section}</h3>`;
+        
+        sec.items.forEach((item, iIdx) => {
+            const btn = document.createElement('button');
+            btn.className = 'menu-btn';
+            btn.textContent = item.name;
+            
+            // Calculate global index for this button
+            let globalIndex = 0;
+            for(let i=0; i < sIdx; i++) globalIndex += features[i].items.length;
+            globalIndex += iIdx;
+            
+            btn.dataset.index = globalIndex;
+            
+            btn.addEventListener('click', () => {
+                selectFeature(globalIndex);
+                if(window.innerWidth <= 768) toggleSidebar(); // Auto-close on mobile
+            });
+            secDiv.appendChild(btn);
+        });
+        menuContent.appendChild(secDiv);
+    });
 }
 
-function setSnippet(index) {
-  const total = snippets.length;
-  currentIndex = (index + total) % total;
-  const snippet = snippets[currentIndex];
-
-  activeSectionLabel.textContent = snippet.section;
-  activeSnippetTitle.textContent = snippet.title;
-  snippetTag.textContent = snippet.tag;
-  codeOutput.textContent = snippet.code;
-
-  renderActiveStyles();
+// 2. Select and display feature
+function selectFeature(index) {
+    currentIndex = index;
+    const data = flatList[index];
+    
+    // UI states
+    welcomeMsg.style.display = 'none';
+    codeContainer.classList.remove('hidden');
+    featureTitle.textContent = `${data.sectionName} > ${data.name}`;
+    codeBlock.textContent = data.code;
+    
+    // Update active button styling
+    document.querySelectorAll('.menu-btn').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.index) === index);
+    });
+    
+    updateNavButtons();
+    copyBtn.textContent = "Copy Code";
 }
 
-function copyCurrentCode() {
-  const text = snippets[currentIndex].code;
-  navigator.clipboard.writeText(text).then(() => {
-    const original = copyBtn.textContent;
-    copyBtn.textContent = "Copied!";
-    setTimeout(() => {
-      copyBtn.textContent = original;
-    }, 1200);
-  });
+// 3. Navigation Controls
+function updateNavButtons() {
+    backBtn.disabled = currentIndex <= 0;
+    nextBtn.disabled = currentIndex >= flatList.length - 1;
 }
 
-function openMenu() {
-  sideMenu.classList.add("open");
-  overlay.classList.remove("hidden");
-}
-
-function closeMenu() {
-  sideMenu.classList.remove("open");
-  overlay.classList.add("hidden");
-}
-
-menuBtn.addEventListener("click", openMenu);
-closeMenuBtn.addEventListener("click", closeMenu);
-overlay.addEventListener("click", closeMenu);
-
-backBtn.addEventListener("click", () => setSnippet(currentIndex - 1));
-nextBtn.addEventListener("click", () => setSnippet(currentIndex + 1));
-copyBtn.addEventListener("click", copyCurrentCode);
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeMenu();
-  if (e.key === "ArrowLeft") setSnippet(currentIndex - 1);
-  if (e.key === "ArrowRight") setSnippet(currentIndex + 1);
+backBtn.addEventListener('click', () => {
+    if (currentIndex > 0) selectFeature(currentIndex - 1);
 });
 
-setSnippet(0);
+nextBtn.addEventListener('click', () => {
+    if (currentIndex < flatList.length - 1) selectFeature(currentIndex + 1);
+});
+
+// 4. Sidebar Toggle (Three dots button)
+function toggleSidebar() {
+    sidebar.classList.toggle('hidden');
+}
+menuBtn.addEventListener('click', toggleSidebar);
+
+// 5. Copy Code functionality
+copyBtn.addEventListener('click', () => {
+    const textToCopy = codeBlock.textContent;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => {
+            copyBtn.textContent = "Copy Code";
+        }, 2000);
+    });
+});
+
+// Init
+renderMenu();
+updateNavButtons();
