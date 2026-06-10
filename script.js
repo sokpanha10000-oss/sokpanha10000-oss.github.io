@@ -1,4 +1,4 @@
-// Upgraded Data Dictionary supporting MULTIPLE code boxes per feature
+// Data Dictionary supporting MULTIPLE code boxes per feature
 const features = [
     {
         section: "Setup",
@@ -167,7 +167,7 @@ function renderMenu() {
             btn.className = 'menu-btn';
             btn.textContent = item.name;
             
-            // Calculate global index for this button
+            // Calculate global index
             let globalIndex = 0;
             for(let i=0; i < sIdx; i++) globalIndex += features[i].items.length;
             globalIndex += iIdx;
@@ -184,7 +184,7 @@ function renderMenu() {
     });
 }
 
-// 2. Select and display feature (Dynamically create boxes)
+// 2. Select and display feature with Animations
 function selectFeature(index) {
     currentIndex = index;
     const data = flatList[index];
@@ -197,13 +197,11 @@ function selectFeature(index) {
     // Clear out old boxes
     snippetsContainer.innerHTML = '';
 
-    // Loop through the snippets array and generate a box for each one
+    // Loop through snippets and generate boxes
     data.snippets.forEach((snippet, idx) => {
-        // Create main box
         const box = document.createElement('div');
-        box.className = 'snippet-box';
+        box.className = 'snippet-box'; // Starts hidden due to CSS
 
-        // Create header
         const header = document.createElement('div');
         header.className = 'snippet-header';
 
@@ -211,7 +209,6 @@ function selectFeature(index) {
         subtitle.className = 'snippet-subtitle';
         subtitle.textContent = snippet.subtitle || `Snippet ${idx + 1}`;
 
-        // Create copy button specific to this box
         const copyBtn = document.createElement('button');
         copyBtn.className = 'copy-btn';
         copyBtn.textContent = 'Copy Code';
@@ -225,18 +222,20 @@ function selectFeature(index) {
         header.appendChild(subtitle);
         header.appendChild(copyBtn);
 
-        // Create code area
         const pre = document.createElement('pre');
         const codeEl = document.createElement('code');
         codeEl.textContent = snippet.code;
         pre.appendChild(codeEl);
 
-        // Assemble box
         box.appendChild(header);
         box.appendChild(pre);
-
-        // Add to page
         snippetsContainer.appendChild(box);
+
+        // STAGGERED FADE-IN ANIMATION
+        // Wait a tiny bit (100ms * index) so they cascade in nicely
+        setTimeout(() => {
+            box.classList.add('fade-in');
+        }, idx * 100 + 50); 
     });
     
     // Update active button styling in sidebar
@@ -261,7 +260,7 @@ nextBtn.addEventListener('click', () => {
     if (currentIndex < flatList.length - 1) selectFeature(currentIndex + 1);
 });
 
-// 4. Sidebar Toggle (Three dots button)
+// 4. Sidebar Toggle (Menu icon button)
 function toggleSidebar() {
     sidebar.classList.toggle('hidden');
 }
