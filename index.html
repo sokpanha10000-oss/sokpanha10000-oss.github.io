@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKUI / Nice Hub Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="landing-page" class="landing-page">
+        <div class="landing-content">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="leaf-icon">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+            </svg>
+            
+            <h1 class="landing-title">Welcome to SKUI</h1>
+            <p class="landing-desc">
+                The ultimate Roblox UI library and documentation hub. Explore components, copy Lua snippets, and follow setup guides to build your My Super Hub experience with ease.
+            </p>
+            
+            <button id="continue-btn" class="continue-btn">Continue to Documentation</button>
+        </div>
+    </div>
+
+    <div id="main-app" class="app-hidden">
+        <header class="top-nav">
+            <div class="nav-left">
+                <button id="menu-btn" class="icon-btn" title="Toggle Menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <h1 class="nav-title">UI Library Documentation</h1>
+            </div>
+            <div class="nav-right">
+                <button id="back-btn" class="nav-btn">Back</button>
+                <button id="next-btn" class="nav-btn">Next</button>
+            </div>
+        </header>
+
+        <div class="layout-container">
+            <aside id="sidebar" class="sidebar">
+                <div id="menu-content">
+                    </div>
+            </aside>
+
+            <main class="main-content">
+                <div class="welcome-msg" id="welcome-msg">
+                    <h2>Select an item from the menu to view its code.</h2>
+                </div>
+                
+                <div id="content-container" class="hidden">
+                    <h2 id="current-feature-title" class="feature-main-title">Feature Title</h2>
+                    <div id="snippets-container">
+                        </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
