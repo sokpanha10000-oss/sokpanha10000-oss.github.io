@@ -1,88 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GitHub Io Wand UI Library</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Io Wand UI Library</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app-shell">
-    <header class="hero">
-      <div class="hero-copy">
-        <div class="eyebrow">GitHub Io Wand UI Library</div>
-        <h1>Description Title</h1>
-        <p>
-          Use the menu to open each section, then tap a feature button to reveal
-          its own copy box and code snippet.
-        </p>
-      </div>
-
-      <div class="hero-actions">
-        <button id="backBtn" class="nav-btn">Back</button>
-        <button id="nextBtn" class="nav-btn primary">Next</button>
-        <button id="menuBtn" class="dots-btn" aria-label="Open menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+    <header class="top-nav">
+        <div class="nav-left">
+            <button id="menu-btn" class="icon-btn" title="Toggle Menu">⋮</button>
+            <h1 class="nav-title">Description Description</h1>
+        </div>
+        <div class="nav-right">
+            <button id="back-btn" class="nav-btn">Back</button>
+            <button id="next-btn" class="nav-btn">Next</button>
+        </div>
     </header>
 
-    <main class="workspace">
-      <aside id="sideMenu" class="side-menu">
-        <div class="menu-top">
-          <strong>Menu</strong>
-          <button id="closeMenuBtn" class="icon-btn" aria-label="Close menu">✕</button>
-        </div>
+    <div class="layout-container">
+        <aside id="sidebar" class="sidebar">
+            <div id="menu-content">
+                </div>
+        </aside>
 
-        <div class="menu-group">
-          <h2>Setup</h2>
-          <button class="menu-section-btn" data-section="setup">Setup</button>
-          <div class="menu-items" id="setupItems"></div>
-        </div>
+        <main class="main-content">
+            <div class="welcome-msg" id="welcome-msg">
+                <h2>Select an item from the menu to view its code.</h2>
+            </div>
+            
+            <div id="code-container" class="code-box hidden">
+                <div class="code-header">
+                    <span id="current-feature-title">Feature Title</span>
+                    <button id="copy-btn" class="copy-btn">Copy Code</button>
+                </div>
+                <pre><code id="code-block"></code></pre>
+            </div>
+        </main>
+    </div>
 
-        <div class="menu-group">
-          <h2>UI</h2>
-          <button class="menu-section-btn" data-section="ui">UI</button>
-          <div class="menu-items" id="uiItems"></div>
-        </div>
-
-        <div class="menu-group">
-          <h2>Elements</h2>
-          <button class="menu-section-btn" data-section="elements">Elements</button>
-          <div class="menu-items" id="elementsItems"></div>
-        </div>
-      </aside>
-
-      <section class="content-panel">
-        <div class="panel-head">
-          <div>
-            <div id="activeSectionLabel" class="section-label">Setup</div>
-            <h2 id="activeSnippetTitle">Library</h2>
-          </div>
-          <button id="copyBtn" class="copy-btn">Copy Code</button>
-        </div>
-
-        <div class="code-box">
-          <div class="code-box-head">
-            <span>Code Box</span>
-            <span id="snippetTag">setup</span>
-          </div>
-          <pre><code id="codeOutput"></code></pre>
-        </div>
-
-        <div class="mini-note">
-          Each button in the menu has its own code box.
-        </div>
-      </section>
-    </main>
-
-    <div id="overlay" class="overlay hidden"></div>
-  </div>
-
-  <template id="menuItemTemplate">
-    <button class="snippet-btn"></button>
-  </template>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
