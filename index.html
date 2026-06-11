@@ -3,42 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKUI / Nice Hub Documentation</title>
+    <title>SKUI Documentation</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div id="landing-page" class="landing-page">
-        <div class="landing-content">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="leaf-icon">
-                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
-                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
-            </svg>
-            
-            <h1 class="landing-title">Welcome to SKUI</h1>
-            <p class="landing-desc">
-                The ultimate Roblox UI library and documentation hub. Explore components, copy Lua snippets, and follow setup guides to build your My Super Hub experience with ease.
-            </p>
-            
-            <button id="continue-btn" class="continue-btn">Continue to Documentation</button>
-        </div>
-    </div>
-
-    <div id="main-app" class="app-hidden">
+    <div class="wrapper">
         <header class="top-nav">
             <div class="nav-left">
-                <button id="menu-btn" class="icon-btn" title="Toggle Menu">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <button id="menu-btn" class="icon-btn mobile-only" title="Toggle Menu">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
                         <line x1="3" y1="6" x2="21" y2="6"></line>
                         <line x1="3" y1="18" x2="21" y2="18"></line>
                     </svg>
                 </button>
-                <h1 class="nav-title">UI Library Documentation</h1>
+                <svg class="nav-logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+                </svg>
+                <h1 class="nav-title">Documentation</h1>
             </div>
             <div class="nav-right">
-                <button id="back-btn" class="nav-btn">Back</button>
-                <button id="next-btn" class="nav-btn">Next</button>
+                <div class="nav-pagination hiden-element" id="nav-pagination">
+                    <button id="back-btn" class="nav-btn">Back</button>
+                    <button id="next-btn" class="nav-btn">Next</button>
+                </div>
+                <button class="icon-btn theme-toggle" title="Toggle Theme">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
             </div>
         </header>
 
@@ -49,11 +43,51 @@
             </aside>
 
             <main class="main-content">
-                <div class="welcome-msg" id="welcome-msg">
-                    <h2>Select an item from the menu to view its code.</h2>
+                <div id="landing-view" class="content-frame animate-fade">
+                    <div class="page-header">
+                        <h2 class="main-page-title">About SKUI</h2>
+                        <p class="main-page-subtitle">What is SKUI Library?</p>
+                    </div>
+                    
+                    <div class="showcase-banner">
+                        <div class="banner-overlay-design">
+                            <div class="mini-card"></div>
+                            <div class="mini-card active-card"></div>
+                            <div class="mini-card"></div>
+                        </div>
+                    </div>
+
+                    <h3 class="body-section-title">About SKUI</h3>
+                    <p class="body-text">
+                        SKUI is a modern, open-source UI library designed for creating beautiful, highly performant, and functional interfaces for your Roblox scripts.
+                    </p>
+                    <p class="body-text">
+                        This documentation framework outlines configuration properties, layout methods, and element behaviors to maximize your workspace creation workflow.
+                    </p>
+
+                    <div class="notice-box beta-box">
+                        <div class="notice-header">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>BETA</span>
+                        </div>
+                        <p class="notice-body">
+                            Currently in active beta, the library focuses heavily on performance optimization and layout stability across popular script execution engines.
+                        </p>
+                    </div>
+
+                    <div id="continue-card-btn" class="navigation-card">
+                        <div class="card-details">
+                            <span class="card-action-text">Loadstring &gt;</span>
+                            <span class="card-desc-text">Load SKUI using standard loadstring</span>
+                        </div>
+                    </div>
                 </div>
                 
-                <div id="content-container" class="hidden">
+                <div id="content-container" class="content-frame hidden animate-fade">
                     <h2 id="current-feature-title" class="feature-main-title">Feature Title</h2>
                     <div id="snippets-container">
                         </div>
