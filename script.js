@@ -1,10 +1,9 @@
-// Data Dictionary supporting MULTIPLE code boxes per feature
 const features = [
     {
         section: "Setup",
         items: [
             {
-                name: "Library",
+                name: "Loadstring",
                 snippets: [
                     {
                         subtitle: "Load Library",
@@ -80,7 +79,7 @@ const features = [
             },
             {
                 name: "Toggle",
-                snippets: [{ subtitle: "Checkbox / Toggle", code: `Tab:AddToggle({\n    Name = "Toggle",\n    Type = "Toggle", -- or [Checkbox]\n    Default = false,\n    Callback = function(Value)\n        -- logic here\n    end\n})` }]
+                snippets: [{ subtitle: "Checkbox / Toggle", code: `Tab:AddToggle({\n    Name = "Toggle",\n    Type = "Toggle",\n    Default = false,\n    Callback = function(Value)\n        -- logic here\n    end\n})` }]
             },
             {
                 name: "Slider",
@@ -132,7 +131,6 @@ const features = [
     }
 ];
 
-// Flatten array for sequential Next/Back navigation
 const flatList = [];
 features.forEach((sec) => {
     sec.items.forEach((item) => {
@@ -142,38 +140,39 @@ features.forEach((sec) => {
 
 let currentIndex = -1;
 
-// DOM Elements
-const landingPage = document.getElementById('landing-page');
-const continueBtn = document.getElementById('continue-btn');
-const mainApp = document.getElementById('main-app');
-
-const sidebar = document.getElementById('sidebar');
+// Elements DOM
 const menuBtn = document.getElementById('menu-btn');
+const sidebar = document.getElementById('sidebar');
 const backBtn = document.getElementById('back-btn');
 const nextBtn = document.getElementById('next-btn');
 const menuContent = document.getElementById('menu-content');
-const welcomeMsg = document.getElementById('welcome-msg');
+const paginationContainer = document.getElementById('nav-pagination');
+
+const landingView = document.getElementById('landing-view');
+const continueCardBtn = document.getElementById('continue-card-btn');
 const contentContainer = document.getElementById('content-container');
 const featureTitle = document.getElementById('current-feature-title');
 const snippetsContainer = document.getElementById('snippets-container');
 
-// 0. Handle Landing Page Transition
-continueBtn.addEventListener('click', () => {
-    // Fade out and scale down slightly
-    landingPage.style.opacity = '0';
-    landingPage.style.transform = 'scale(0.95)';
-    
-    // After animation finishes, hide landing and show main app
-    setTimeout(() => {
-        landingPage.classList.add('app-hidden');
-        mainApp.classList.remove('app-hidden');
-    }, 500); 
+// Launch Main Area via Loadstring / Get Started card
+continueCardBtn.addEventListener('click', () => {
+    selectFeature(0); // Auto navigate to Loadstring setup view
 });
 
-// 1. Initialize Menu UI
 function renderMenu() {
     menuContent.innerHTML = '';
     
+    // Default Home Entry Button
+    const baseDiv = document.createElement('div');
+    baseDiv.className = 'menu-section';
+    baseDiv.innerHTML = `<h3>Introducing</h3>`;
+    const homeBtn = document.createElement('button');
+    homeBtn.className = 'menu-btn active';
+    homeBtn.textContent = 'About SKUI';
+    homeBtn.onclick = () => showLandingMenu(homeBtn);
+    baseDiv.appendChild(homeBtn);
+    menuContent.appendChild(baseDiv);
+
     features.forEach((sec, sIdx) => {
         const secDiv = document.createElement('div');
         secDiv.className = 'menu-section';
@@ -192,7 +191,7 @@ function renderMenu() {
             
             btn.addEventListener('click', () => {
                 selectFeature(globalIndex);
-                if(window.innerWidth <= 768) toggleSidebar();
+                if(window.innerWidth <= 768) sidebar.classList.remove('active-mobile');
             });
             secDiv.appendChild(btn);
         });
@@ -200,35 +199,45 @@ function renderMenu() {
     });
 }
 
-// 2. Select and display feature with Animations
+function showLandingMenu(activeBtnElement) {
+    currentIndex = -1;
+    contentContainer.classList.add('hidden');
+    paginationContainer.classList.add('hiden-element');
+    landingView.classList.remove('hidden');
+    
+    document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
+    activeBtnElement.classList.add('active');
+}
+
 function selectFeature(index) {
     currentIndex = index;
     const data = flatList[index];
     
-    welcomeMsg.style.display = 'none';
+    landingView.classList.add('hidden');
     contentContainer.classList.remove('hidden');
-    featureTitle.textContent = `${data.sectionName} > ${data.name}`;
+    paginationContainer.classList.remove('hiden-element');
+    featureTitle.textContent = data.name;
     
     snippetsContainer.innerHTML = '';
 
-    data.snippets.forEach((snippet, idx) => {
+    data.snippets.forEach((snippet) => {
         const box = document.createElement('div');
-        box.className = 'snippet-box';
+        box.className = 'snippet-box animate-fade';
 
         const header = document.createElement('div');
         header.className = 'snippet-header';
 
         const subtitle = document.createElement('span');
         subtitle.className = 'snippet-subtitle';
-        subtitle.textContent = snippet.subtitle || `Snippet ${idx + 1}`;
+        subtitle.textContent = snippet.subtitle;
 
         const copyBtn = document.createElement('button');
         copyBtn.className = 'copy-btn';
-        copyBtn.textContent = 'Copy Code';
+        copyBtn.textContent = 'Copy';
         copyBtn.onclick = () => {
             navigator.clipboard.writeText(snippet.code).then(() => {
                 copyBtn.textContent = 'Copied!';
-                setTimeout(() => copyBtn.textContent = 'Copy Code', 2000);
+                setTimeout(() => copyBtn.textContent = 'Copy', 1500);
             });
         };
 
@@ -243,11 +252,6 @@ function selectFeature(index) {
         box.appendChild(header);
         box.appendChild(pre);
         snippetsContainer.appendChild(box);
-
-        // Fade in animation
-        setTimeout(() => {
-            box.classList.add('fade-in');
-        }, idx * 100 + 50); 
     });
     
     document.querySelectorAll('.menu-btn').forEach(btn => {
@@ -257,7 +261,6 @@ function selectFeature(index) {
     updateNavButtons();
 }
 
-// 3. Navigation Controls
 function updateNavButtons() {
     backBtn.disabled = currentIndex <= 0;
     nextBtn.disabled = currentIndex >= flatList.length - 1;
@@ -271,12 +274,10 @@ nextBtn.addEventListener('click', () => {
     if (currentIndex < flatList.length - 1) selectFeature(currentIndex + 1);
 });
 
-// 4. Sidebar Toggle
-function toggleSidebar() {
-    sidebar.classList.toggle('hidden');
-}
-menuBtn.addEventListener('click', toggleSidebar);
+menuBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('active-mobile');
+});
 
-// Init
+// Run framework initialization
 renderMenu();
 updateNavButtons();
