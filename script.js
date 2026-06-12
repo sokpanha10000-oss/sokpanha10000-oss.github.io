@@ -156,7 +156,7 @@ const snippetsContainer = document.getElementById('snippets-container');
 
 // Launch Main Area via Loadstring / Get Started card
 continueCardBtn.addEventListener('click', () => {
-    selectFeature(0); // Auto navigate to Loadstring setup view
+    selectFeature(0);
 });
 
 function renderMenu() {
@@ -168,7 +168,7 @@ function renderMenu() {
     baseDiv.innerHTML = `<h3>Introducing</h3>`;
     const homeBtn = document.createElement('button');
     homeBtn.className = 'menu-btn active';
-    homeBtn.textContent = 'About SKUI';
+    homeBtn.textContent = 'About Wand UI';
     homeBtn.onclick = () => showLandingMenu(homeBtn);
     baseDiv.appendChild(homeBtn);
     menuContent.appendChild(baseDiv);
