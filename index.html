@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wand UI Documentation</title>
+    <title>Documentation Hub</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,7 +21,7 @@
                     <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
                     <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
                 </svg>
-                <h1 class="nav-title">Documentation</h1>
+                <h1 class="nav-title" id="main-nav-title">Wand UI Docs</h1>
             </div>
             <div class="nav-right">
                 <div class="nav-pagination hiden-element" id="nav-pagination">
@@ -45,16 +45,16 @@
             <main class="main-content">
                 <div id="landing-view" class="content-frame animate-fade">
                     <div class="page-header">
-                        <h2 class="main-page-title">About Wand UI</h2>
-                        <p class="main-page-subtitle">What is Wand UI Library?</p>
+                        <h2 class="main-page-title" id="intro-title">About Wand UI</h2>
+                        <p class="main-page-subtitle" id="intro-subtitle">What is this Library?</p>
                     </div>
                     
-                    <div class="image-showcase">
-                        <img src="file_000000009990720696aa9204c35486df.png" alt="Wand UI Preview Interface" class="preview-img">
+                    <div class="image-showcase" id="thumbnail-showcase">
+                        <img src="file_000000009990720696aa9204c35486df.png" alt="UI Preview Interface" class="preview-img">
                     </div>
 
-                    <h3 class="body-section-title">About Wand UI</h3>
-                    <p class="body-text">
+                    <h3 class="body-section-title" id="desc-title">About Wand UI</h3>
+                    <p class="body-text" id="desc-text-1">
                         <strong>Wand UI</strong> is a Redz Library V5 remake, modified and expanded by <strong>Pirath_4 & STEVEKHMER</strong> and other contributors. It is a modern, open-source UI library designed for creating beautiful, highly performant, and functional interfaces for your Roblox scripts.
                     </p>
                     <p class="body-text">
@@ -70,15 +70,24 @@
                             </svg>
                             <span>BETA</span>
                         </div>
-                        <p class="notice-body">
+                        <p class="notice-body" id="beta-text">
                             Currently in active beta, the library focuses heavily on performance optimization and layout stability across popular script execution engines.
                         </p>
                     </div>
 
-                    <div id="continue-card-btn" class="navigation-card">
-                        <div class="card-details">
-                            <span class="card-action-text">Loadstring &gt;</span>
-                            <span class="card-desc-text">Load Wand UI using standard loadstring</span>
+                    <div class="action-cards">
+                        <div id="lib-toggle-btn" class="navigation-card toggle-card">
+                            <div class="card-details toggle-details">
+                                <span class="card-action-text" id="toggle-card-title">Switch to P4Lib &gt;</span>
+                                <span class="card-desc-text" id="toggle-card-desc">Currently viewing Wand UI</span>
+                            </div>
+                        </div>
+
+                        <div id="continue-card-btn" class="navigation-card">
+                            <div class="card-details">
+                                <span class="card-action-text">Loadstring &gt;</span>
+                                <span class="card-desc-text">Start scripting now</span>
+                            </div>
                         </div>
                     </div>
                 </div>
