@@ -211,7 +211,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #000; /* Dark background behind image if needed */
+    background-color: #000;
 }
 
 .preview-img {
@@ -261,7 +261,14 @@ body {
     line-height: 1.5;
 }
 
-/* Navigation bottom quick links box */
+/* Action Grid for Library Switcher */
+.action-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 30px;
+}
+
 .navigation-card {
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -272,7 +279,6 @@ body {
     cursor: pointer;
     background-color: var(--bg-frame);
     transition: all 0.2s ease;
-    margin-top: 30px;
 }
 
 .navigation-card:hover {
@@ -280,10 +286,26 @@ body {
     background-color: var(--bg-element);
 }
 
+.toggle-card {
+    background-color: var(--bg-element);
+    border-color: var(--accent-green);
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.toggle-card:hover {
+    background-color: var(--bg-canvas);
+    border-color: var(--accent-hover);
+}
+
 .card-details {
     display: flex;
     flex-direction: column;
     text-align: right;
+}
+
+.toggle-details {
+    text-align: left;
 }
 
 .card-action-text {
@@ -375,9 +397,7 @@ code {
 
 /* Mobile Screen Breakpoint Layout adjustments */
 @media(max-width: 768px) {
-    .sidebar {
-        display: none;
-    }
+    .sidebar { display: none; }
     .sidebar.active-mobile {
         display: block;
         position: absolute;
@@ -390,4 +410,5 @@ code {
         padding: 8px;
     }
     .mobile-only { display: block; }
+    .action-cards { grid-template-columns: 1fr; }
 }
